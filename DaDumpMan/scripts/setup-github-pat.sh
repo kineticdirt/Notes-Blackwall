@@ -44,11 +44,12 @@ printf "protocol=https\nhost=%s\nusername=%s\npassword=%s\n" "$GITHUB_HOST" "$GI
   | git credential approve
 
 # Use plain HTTPS URL (no user@ in URL — that can cause "Bad hostname")
+# Default: Cequence-BlackWall (monorepo). For a standalone repo set REPO_NAME e.g. REPO_NAME=DaDumpMan
+REPO_NAME="${REPO_NAME:-Cequence-BlackWall}"
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  git remote set-url origin "https://${GITHUB_HOST}/kineticdirt/DaDumpMan.git" 2>/dev/null || true
-  # Force this repo to use kineticdirt for credential lookup (avoids "denied to OtherAccount")
+  git remote set-url origin "https://${GITHUB_HOST}/${GITHUB_USER}/${REPO_NAME}.git" 2>/dev/null || true
   git config credential.https://github.com.username "$GITHUB_USER"
-  echo "Set origin and credential username to: ${GITHUB_USER}"
+  echo "Set origin to https://${GITHUB_HOST}/${GITHUB_USER}/${REPO_NAME}.git"
 fi
 
 echo "Done. Credential stored for https://${GITHUB_HOST} as ${GITHUB_USER}."

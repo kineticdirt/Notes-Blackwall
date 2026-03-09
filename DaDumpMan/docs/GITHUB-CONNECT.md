@@ -35,14 +35,21 @@ You should see “Logged in to github.com as kineticdirt”. After that, `git pu
 
 ### 4. Push this repo
 
-From the repo root (e.g. `DaDumpMan`):
+**Monorepo (Cequence BlackWall):** from the workspace root:
+
+```bash
+git remote add origin https://github.com/kineticdirt/Cequence-BlackWall.git
+git push -u origin main
+```
+
+**Standalone repo (e.g. DaDumpMan):** if you split out a project:
 
 ```bash
 git remote add origin https://github.com/kineticdirt/DaDumpMan.git
 git push -u origin main
 ```
 
-If the repo was created with SSH URL (`git@github.com:kineticdirt/DaDumpMan.git`), either use the HTTPS URL above so `gh` auth is used, or use SSH (Option B below).
+If the repo was created with an SSH URL, use that with SSH or use the HTTPS URL so `gh` auth is used (Option B below).
 
 ---
 
@@ -50,7 +57,7 @@ If the repo was created with SSH URL (`git@github.com:kineticdirt/DaDumpMan.git`
 
 Use this when you don’t want the CLI and prefer token-only auth.
 
-**Quick setup (paste token once):** From the repo root, run `./scripts/setup-github-pat.sh`. When prompted, paste your PAT (input is hidden). It's stored by git's credential helper; then run `git push -u origin main`. Different user: `GITHUB_USER=youruser ./scripts/setup-github-pat.sh`.
+**Quick setup (paste token once):** From the repo root, run `./DaDumpMan/scripts/setup-github-pat.sh`. When prompted, paste your PAT (input is hidden). It sets origin to `Cequence-BlackWall` by default; then run `git push -u origin main`. For a different repo: `REPO_NAME=DaDumpMan ./DaDumpMan/scripts/setup-github-pat.sh`. Different user: `GITHUB_USER=youruser ./DaDumpMan/scripts/setup-github-pat.sh`.
 
 ### 1. Create a token
 
@@ -61,10 +68,10 @@ Copy the token once; it won’t be shown again.
 
 ### 2. Use the token when git asks for a password
 
-Remote must be HTTPS (not SSH):
+Remote must be HTTPS (not SSH). Use `Cequence-BlackWall` for the monorepo, or the repo name if pushing a standalone project:
 
 ```bash
-git remote add origin https://github.com/kineticdirt/DaDumpMan.git
+git remote add origin https://github.com/kineticdirt/Cequence-BlackWall.git
 git push -u origin main
 ```
 
@@ -75,7 +82,7 @@ When prompted:
 
 ### 3. If you get 403 when pushing
 
-- **Use HTTPS, not SSH.** The PAT script stores credentials for HTTPS. If your remote is `git@github.com:...`, git uses SSH (your key), not the PAT. Fix: `git remote set-url origin https://github.com/kineticdirt/DaDumpMan.git`
+- **Use HTTPS, not SSH.** The PAT script stores credentials for HTTPS. If your remote is `git@github.com:...`, git uses SSH (your key), not the PAT. Fix: `git remote set-url origin https://github.com/kineticdirt/Cequence-BlackWall.git`
 - **Token scope:** Classic token needs **repo**. Fine-grained needs **Contents** (Read and write) + **Metadata** (Read), and **Repository access** must include **DaDumpMan** (or All repositories).
 - **New repo:** If you just created DaDumpMan, create a fresh token that includes this repo, run `./scripts/setup-github-pat.sh` again, then push.
 
