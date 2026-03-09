@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "competition": {
+    "name": "Sample Competition",
+    "rounds": 2,
+    "max_competitors": 3
+  },
+  "worktree": {
+    "base_path": "worktrees",
+    "cleanup_after_round": false
+  },
+  "arena": {
+    "test_command": "python -m pytest tests/ -v",
+    "timeout_seconds": 60,
+    "parallel_tests": false
+  }
+}

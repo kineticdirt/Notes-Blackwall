@@ -1,0 +1,28 @@
+# Blackwall: AI Dungeon for Text & Image Protection
+
+# Core dependencies
+numpy>=1.24.0
+torch>=2.0.0
+transformers>=4.30.0
+
+# Image processing (from nightshade-tracker)
+Pillow>=10.0.0
+opencv-python>=4.8.0
+scipy>=1.11.0
+torchvision>=0.15.0
+
+# Error correction
+reedsolo>=1.7.0
+
+# Database
+# sqlite3 is built-in
+
+# CLI
+click>=8.1.0
+pyyaml>=6.0
+
+# Text processing
+# transformers already included above
+
+# MCP server (notes/beliefs for Cursor) - optional: pip install mcp
+# mcp>=1.0.0

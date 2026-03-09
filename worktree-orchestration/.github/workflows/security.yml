@@ -1,0 +1,59 @@
+name: Security Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          cd worktree-orchestration
+          pip install -r requirements.txt
+          pip install semgrep bandit safety pytest
+      
+      - name: Run Semgrep
+        continue-on-error: true
+        run: |
+          cd worktree-orchestration
+          semgrep --config=auto src/ || echo "Semgrep completed with findings"
+      
+      - name: Run Bandit
+        continue-on-error: true
+        run: |
+          cd worktree-orchestration
+          bandit -r src/ || echo "Bandit completed with findings"
+      
+      - name: Run Safety (dependency check)
+        continue-on-error: true
+        env:
+          SAFETY_API_KEY: ${{ secrets.SAFETY_API_KEY }}
+        run: |
+          cd worktree-orchestration
+          safety check || echo "Safety check completed"
+      
+      - name: Run Snyk
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+          cd worktree-orchestration
+          snyk test --severity-threshold=high || echo "Snyk scan completed"
+      
+      - name: Run security tests
+        run: |
+          cd worktree-orchestration
+          pytest tests/test_security.py -v

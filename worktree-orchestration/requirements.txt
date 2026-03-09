@@ -1,0 +1,25 @@
+# Core dependencies
+pydantic>=2.0.0
+click>=8.0.0
+
+# Security
+PyJWT>=2.8.0,<3.0.0
+bcrypt>=4.0.0,<5.0.0  # Optional but recommended for password hashing
+
+# Async support (Python 3.7+ has asyncio built-in)
+# No additional async dependencies needed
+
+# Optional: For advanced similarity analysis
+# numpy>=1.20.0  # Uncomment if using embedding-based similarity
+# scikit-learn>=1.0.0  # Uncomment for clustering
+
+# Development
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+mypy>=1.0.0
+
+# Security scanning (optional, for CI/CD)
+# semgrep>=1.0.0  # Install via: pip install semgrep
+# bandit>=1.7.0   # Install via: pip install bandit
+# safety>=2.0.0   # Install via: pip install safety

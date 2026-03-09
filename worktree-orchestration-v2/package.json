@@ -1,0 +1,61 @@
+{
+  "name": "worktree-orchestration-v2",
+  "version": "2.0.0",
+  "description": "Event-driven competitive AI framework with JSON-RPC and plugin system",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "worktree-orch": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:property": "jest --testPathPattern=property",
+    "bench": "node --loader tsx/esm benchmarks/run-all.ts",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "generate-rpc-types": "tsx scripts/generate-rpc-types.ts"
+  },
+  "keywords": [
+    "worktree",
+    "orchestration",
+    "ai",
+    "competitive",
+    "event-driven",
+    "json-rpc",
+    "plugin-system"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^7.8.1",
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "zod": "^3.22.4",
+    "pino": "^8.17.2",
+    "pino-pretty": "^10.3.1",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/benchmark": "^2.1.9",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "fast-check": "^3.18.0",
+    "benchmark": "^2.1.4",
+    "eslint": "^8.56.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

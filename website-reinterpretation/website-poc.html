@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Proxy Browser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .browser-header {
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .browser-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .browser-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 4px;
+            background: #f0f0f0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .browser-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .url-bar {
+            flex: 1;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .url-bar:focus {
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .go-btn {
+            padding: 8px 20px;
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .go-btn:hover {
+            background: #0056CC;
+        }
+
+        .browser-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007AFF;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            padding: 20px;
+            color: #d32f2f;
+            background: #ffebee;
+            border-radius: 4px;
+            margin: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .status-bar {
+            background: #fff;
+            border-top: 1px solid #ddd;
+            padding: 5px 15px;
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="browser-header">
+        <div class="browser-controls">
+            <button class="browser-btn" onclick="goBack()" title="Back">←</button>
+            <button class="browser-btn" onclick="goForward()" title="Forward">→</button>
+            <button class="browser-btn" onclick="reload()" title="Reload">↻</button>
+        </div>
+        <input type="text" class="url-bar" id="urlInput" placeholder="Enter URL (e.g., https://example.com)" 
+               onkeypress="handleKeyPress(event)">
+        <button class="go-btn" onclick="loadWebsite()">Go</button>
+    </div>
+    
+    <div class="browser-content" id="content">
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+        <div id="error" style="display: none;"></div>
+        <iframe id="websiteFrame" style="display: none;"></iframe>
+    </div>
+
+    <div class="status-bar">
+        <span id="status">Ready</span>
+        <span id="urlDisplay"></span>
+    </div>
+
+    <script>
+        let currentUrl = '';
+        let history = [];
+        let historyIndex = -1;
+
+        function updateStatus(message, url = '') {
+            document.getElementById('status').textContent = message;
+            document.getElementById('urlDisplay').textContent = url;
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('websiteFrame').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function showError(message) {
+            hideLoading();
+            const errorDiv = document.getElementById('error');
+            errorDiv.style.display = 'block';
+            errorDiv.innerHTML = `<div class="error">${message}</div>`;
+            document.getElementById('websiteFrame').style.display = 'none';
+        }
+
+        function showWebsite(url) {
+            hideLoading();
+            document.getElementById('error').style.display = 'none';
+            const frame = document.getElementById('websiteFrame');
+            frame.style.display = 'block';
+            frame.src = url;
+        }
+
+        async function loadWebsite() {
+            const urlInput = document.getElementById('urlInput');
+            let url = urlInput.value.trim();
+            
+            if (!url) {
+                return;
+            }
+
+            // Add protocol if missing
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+
+            currentUrl = url;
+            urlInput.value = url;
+            
+            // Add to history
+            history = history.slice(0, historyIndex + 1);
+            history.push(url);
+            historyIndex = history.length - 1;
+
+            showLoading();
+            updateStatus('Loading...', url);
+
+            try {
+                // Use proxy endpoint
+                const proxyUrl = `/proxy/${url}`;
+                showWebsite(proxyUrl);
+                updateStatus('Loaded', url);
+            } catch (error) {
+                showError(`Error loading website: ${error.message}`);
+                updateStatus('Error', url);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                loadWebsite();
+            }
+        }
+
+        function goBack() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                const url = history[historyIndex];
+                document.getElementById('urlInput').value = url;
+                currentUrl = url;
+                showLoading();
+                updateStatus('Loading...', url);
+                showWebsite(`/proxy/${url}`);
+                updateStatus('Loaded', url);
+            }
+        }
+
+        function goForward() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                const url = history[historyIndex];
+                document.getElementById('urlInput').value = url;
+                currentUrl = url;
+                showLoading();
+                updateStatus('Loading...', url);
+                showWebsite(`/proxy/${url}`);
+                updateStatus('Loaded', url);
+            }
+        }
+
+        function reload() {
+            if (currentUrl) {
+                showLoading();
+                updateStatus('Reloading...', currentUrl);
+                const frame = document.getElementById('websiteFrame');
+                frame.src = frame.src; // Reload iframe
+                setTimeout(() => {
+                    updateStatus('Loaded', currentUrl);
+                    hideLoading();
+                }, 500);
+            }
+        }
+
+        // Load example.com by default
+        window.addEventListener('load', () => {
+            document.getElementById('urlInput').value = 'https://example.com';
+            loadWebsite();
+        });
+    </script>
+</body>
+</html>

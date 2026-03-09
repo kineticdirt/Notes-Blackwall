@@ -1,0 +1,11 @@
+{
+  "last_run": "2026-01-28T17:15:26.890307",
+  "observations_summary": {
+    "file_count": 333,
+    "git_branch": null,
+    "git_dirty": null,
+    "timestamp": "2026-01-28T17:15:26.747085"
+  },
+  "applied_changes": [],
+  "goal": "Keep documentation and entrypoints in sync; suggest small fixes only."
+}

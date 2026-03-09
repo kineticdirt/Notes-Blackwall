@@ -1,0 +1,7 @@
+# Ignore actual key files (never commit keys)
+ANTHROPIC_API_KEY
+OPENAI_API_KEY
+*_API_KEY
+*.key
+!README.md
+!.gitignore

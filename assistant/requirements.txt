@@ -1,0 +1,5 @@
+# Optional: for dynamic MCP server connections (stdio).
+# Without this, the assistant still runs with built-in + preference tools only.
+mcp>=1.0.0
+# Optional: for full user_config.yaml (keys + MCP). Works without it via minimal parser.
+pyyaml>=6.0

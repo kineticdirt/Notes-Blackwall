@@ -1,0 +1,28 @@
+# MCP Toolbox Configuration for Testing
+# This demonstrates how MCP Toolbox can integrate with our worktree system
+
+kind: sources
+type: sqlite
+database: .worktrees/worktree.db
+
+---
+kind: tools
+name: get_kanban_cards
+type: postgres-sql
+source: test-sqlite-source
+description: Get Kanban cards by status. Integrates with our Kanban board system.
+parameters:
+  - name: status
+    type: string
+    description: Card status (todo, in_progress, review, done)
+statement: |
+  SELECT card_id, title, description, status, assignee, priority
+  FROM cards
+  WHERE status = $1
+  ORDER BY priority DESC
+
+---
+kind: toolsets
+name: kanban_toolset
+tools:
+  - get_kanban_cards

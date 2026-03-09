@@ -1,0 +1,155 @@
+{
+  "version": "1.0",
+  "created_at": "2026-02-02T10:26:08.617852",
+  "agents": {
+    "code-wt-1797a": {
+      "agent_id": "code-wt-1797a",
+      "agent_type": "code",
+      "registered_at": "2026-02-02T10:26:08.620199",
+      "last_seen": "2026-02-02T10:26:08.620203",
+      "status": "active",
+      "metadata": {}
+    },
+    "test-wt-1797a": {
+      "agent_id": "test-wt-1797a",
+      "agent_type": "test",
+      "registered_at": "2026-02-02T10:26:08.633494",
+      "last_seen": "2026-02-02T10:26:08.633497",
+      "status": "active",
+      "metadata": {}
+    },
+    "doc-wt-1797a": {
+      "agent_id": "doc-wt-1797a",
+      "agent_type": "documentation",
+      "registered_at": "2026-02-02T10:26:08.651252",
+      "last_seen": "2026-02-02T10:26:08.651255",
+      "status": "active",
+      "metadata": {}
+    },
+    "code-wt-a2f0d": {
+      "agent_id": "code-wt-a2f0d",
+      "agent_type": "code",
+      "registered_at": "2026-02-02T10:26:20.737733",
+      "last_seen": "2026-02-02T10:26:20.737737",
+      "status": "active",
+      "metadata": {}
+    },
+    "test-wt-a2f0d": {
+      "agent_id": "test-wt-a2f0d",
+      "agent_type": "test",
+      "registered_at": "2026-02-02T10:26:20.755749",
+      "last_seen": "2026-02-02T10:26:20.755752",
+      "status": "active",
+      "metadata": {}
+    },
+    "doc-wt-a2f0d": {
+      "agent_id": "doc-wt-a2f0d",
+      "agent_type": "documentation",
+      "registered_at": "2026-02-02T10:26:20.773251",
+      "last_seen": "2026-02-02T10:26:20.773257",
+      "status": "active",
+      "metadata": {}
+    }
+  },
+  "messages": [
+    {
+      "id": "261460c07f3a",
+      "agent_id": "code-wt-1797a",
+      "target_agent": null,
+      "message": "Agent code-wt-1797a (code) registered",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:08.624150"
+    },
+    {
+      "id": "4c0028114ba6",
+      "agent_id": "code-wt-1797a",
+      "target_agent": null,
+      "message": "Agent initialized",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:08.628566"
+    },
+    {
+      "id": "67e78d3e23ae",
+      "agent_id": "test-wt-1797a",
+      "target_agent": null,
+      "message": "Agent test-wt-1797a (test) registered",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:08.641053"
+    },
+    {
+      "id": "82245d40ac97",
+      "agent_id": "test-wt-1797a",
+      "target_agent": null,
+      "message": "Agent initialized",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:08.645557"
+    },
+    {
+      "id": "8f51289d025c",
+      "agent_id": "doc-wt-1797a",
+      "target_agent": null,
+      "message": "Agent doc-wt-1797a (documentation) registered",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:08.655241"
+    },
+    {
+      "id": "56b33256f894",
+      "agent_id": "doc-wt-1797a",
+      "target_agent": null,
+      "message": "Agent initialized",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:08.658887"
+    },
+    {
+      "id": "d4f82595b98b",
+      "agent_id": "code-wt-a2f0d",
+      "target_agent": null,
+      "message": "Agent code-wt-a2f0d (code) registered",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:20.743829"
+    },
+    {
+      "id": "b55311d9d6a9",
+      "agent_id": "code-wt-a2f0d",
+      "target_agent": null,
+      "message": "Agent initialized",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:20.747472"
+    },
+    {
+      "id": "a8015da6afe8",
+      "agent_id": "test-wt-a2f0d",
+      "target_agent": null,
+      "message": "Agent test-wt-a2f0d (test) registered",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:20.759287"
+    },
+    {
+      "id": "4f05fe4dbf80",
+      "agent_id": "test-wt-a2f0d",
+      "target_agent": null,
+      "message": "Agent initialized",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:20.764912"
+    },
+    {
+      "id": "403949913f8e",
+      "agent_id": "doc-wt-a2f0d",
+      "target_agent": null,
+      "message": "Agent doc-wt-a2f0d (documentation) registered",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:20.777015"
+    },
+    {
+      "id": "b2264d18fc99",
+      "agent_id": "doc-wt-a2f0d",
+      "target_agent": null,
+      "message": "Agent initialized",
+      "type": "info",
+      "timestamp": "2026-02-02T10:26:20.781049"
+    }
+  ],
+  "tasks": [],
+  "locks": {},
+  "state": {}
+}

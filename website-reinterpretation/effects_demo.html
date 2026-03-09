@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grainrad Effects Demo</title>
+    <style>
+        /* Shader-based graphics - Grainrad style */
+        :root {
+            --shader-noise: 0.15;
+            --shader-grain: 0.08;
+            --shader-scanlines: True;
+            --primary-color: #00ff88;
+            --background-color: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--background-color);
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        /* Grain effect */
+        body {
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, var(--shader-grain)),
+                    rgba(0, 0, 0, var(--shader-grain)) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                var(--background-color);
+            position: relative;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.03) 2px,
+                rgba(0, 0, 0, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Grain/noise effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9998;
+            opacity: var(--shader-noise);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .demo-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+        }
+
+        .demo-section h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Dithering effect on text */
+        .dithered-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #fff;
+        }
+
+        /* Pixelated images */
+        img {
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+            filter: contrast(1.2) brightness(0.95);
+            max-width: 100%;
+        }
+
+        .ascii-art {
+            font-family: 'Courier New', monospace;
+            font-size: 0.6rem;
+            line-height: 1.2;
+            white-space: pre;
+            background: #000;
+            padding: 1rem;
+            color: var(--primary-color);
+            overflow-x: auto;
+        }
+
+        .status {
+            padding: 1rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary-color);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>╔═══════════════════════════════════╗</h1>
+        <h1>║   GRAINRAD EFFECTS DEMO          ║</h1>
+        <h1>╚═══════════════════════════════════╝</h1>
+
+        <div class="status">
+            ✅ Effects Active: Scanlines, Grain, Shader CSS
+        </div>
+
+        <div class="demo-section">
+            <h2>Scanlines Effect</h2>
+            <p>You should see horizontal dark bands across the screen (CRT effect).</p>
+            <p>This is created with CSS repeating-linear-gradient.</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>Grain/Noise Effect</h2>
+            <p>A subtle texture overlay using SVG fractal noise.</p>
+            <p>Gives the retro terminal aesthetic.</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>Dithered Text</h2>
+            <div class="dithered-text">
+                This text demonstrates dithering effects. The character density creates
+                visual texture similar to Floyd-Steinberg dithering algorithms.
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>ASCII Art Example</h2>
+            <div class="ascii-art">
+    ╔═══════════════════════════════╗
+    ║   GRAINRAD EFFECTS            ║
+    ║                               ║
+    ║   • Scanlines                 ║
+    ║   • Grain/Noise                ║
+    ║   • Dithering                 ║
+    ║   • ASCII Art                 ║
+    ║   • Shader CSS                ║
+    ╚═══════════════════════════════╝
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Test with Proxy</h2>
+            <p>To see effects on real websites:</p>
+            <pre style="background: #000; padding: 1rem; color: var(--primary-color);">
+ENABLE_EFFECTS=true python3 run_proxy.py
+curl http://localhost:8001/proxy/https://example.com
+            </pre>
+        </div>
+    </div>
+</body>
+</html>

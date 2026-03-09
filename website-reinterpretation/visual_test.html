@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Effects Visual Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 2rem;
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        
+        .test-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .test-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ff88;
+        }
+        
+        h1 {
+            color: #00ff88;
+            border-bottom: 2px solid #00ff88;
+            padding-bottom: 1rem;
+        }
+        
+        .url-input {
+            width: 100%;
+            padding: 0.5rem;
+            font-family: inherit;
+            background: #000;
+            color: #fff;
+            border: 1px solid #00ff88;
+            margin: 1rem 0;
+        }
+        
+        .test-btn {
+            padding: 0.5rem 1rem;
+            background: #00ff88;
+            color: #000;
+            border: none;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0.5rem 0;
+        }
+        
+        .test-btn:hover {
+            opacity: 0.8;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #00ff88;
+            background: #000;
+        }
+        
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Combined Effects Visual Test</h1>
+        
+        <div class="test-section">
+            <h2>Test Website with Combined Effects</h2>
+            <p>Enter a URL to test with combined effects (scanlines, grain, halftone, VHS, dots, matrix rain)</p>
+            
+            <input type="text" class="url-input" id="urlInput" 
+                   value="https://example.com" 
+                   placeholder="Enter URL">
+            
+            <div>
+                <button class="test-btn" onclick="testUrl()">Test URL</button>
+                <button class="test-btn" onclick="testYouTube()">Test YouTube</button>
+                <button class="test-btn" onclick="testDevDocs()">Test DevDocs</button>
+            </div>
+            
+            <div id="status" class="status" style="display: none;"></div>
+            
+            <iframe id="testFrame" src="about:blank"></iframe>
+        </div>
+        
+        <div class="test-section">
+            <h2>Effects Active</h2>
+            <ul>
+                <li>✅ Scanlines (CRT horizontal bands)</li>
+                <li>✅ Grain/Noise (texture overlay)</li>
+                <li>✅ Halftone (pixelated images)</li>
+                <li>✅ VHS (scan animation)</li>
+                <li>✅ Dots (radial gradient pattern)</li>
+                <li>✅ Matrix Rain (animated green lines)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        const proxyUrl = window.location.origin;
+        
+        function showStatus(message, isError = false) {
+            const status = document.getElementById('status');
+            status.style.display = 'block';
+            status.textContent = message;
+            status.style.background = isError ? 'rgba(255, 0, 0, 0.1)' : 'rgba(0, 255, 136, 0.1)';
+        }
+        
+        function testUrl() {
+            const url = document.getElementById('urlInput').value.trim();
+            if (!url) {
+                showStatus('Please enter a URL', true);
+                return;
+            }
+            
+            showStatus('Loading...');
+            const frame = document.getElementById('testFrame');
+            const testUrl = `${proxyUrl}/proxy/${url}`;
+            frame.src = testUrl;
+            
+            frame.onload = () => {
+                showStatus(`✓ Loaded: ${url}`);
+            };
+            
+            frame.onerror = () => {
+                showStatus(`✗ Error loading: ${url}`, true);
+            };
+        }
+        
+        function testYouTube() {
+            document.getElementById('urlInput').value = 'https://youtube.com';
+            testUrl();
+        }
+        
+        function testDevDocs() {
+            document.getElementById('urlInput').value = 'https://devdocs.io/cpp/';
+            testUrl();
+        }
+        
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            setTimeout(() => testUrl(), 1000);
+        });
+    </script>
+</body>
+</html>

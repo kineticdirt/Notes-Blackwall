@@ -1,0 +1,30 @@
+# Configuration for Nightshade Tracker
+
+# Watermarking settings
+watermark:
+  uuid_bits: 256  # UUID size in bits (128 or 256)
+  redundancy_factor: 15  # Number of times to embed UUID
+  ecc_enabled: true
+  ecc_redundancy: 0.3  # 30% error correction overhead
+  
+# Poisoning settings
+poisoning:
+  strength: 0.1  # Perturbation strength (0.0 to 1.0)
+  target_class: null  # Target class for poisoning (null = auto-detect)
+  epsilon: 0.03  # Maximum perturbation per pixel
+  
+# Optimization
+optimization:
+  alpha: 0.5  # Balance between poison and watermark (0.0 = only watermark, 1.0 = only poison)
+  iterations: 100  # Optimization iterations
+  learning_rate: 0.01
+  
+# Database
+database:
+  path: "registry.db"
+  auto_backup: true
+  
+# Detection
+detection:
+  min_confidence: 0.7  # Minimum confidence for match
+  hash_threshold: 5  # pHash Hamming distance threshold

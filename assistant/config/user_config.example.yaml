@@ -1,0 +1,35 @@
+# Copy this file to user_config.yaml and fill in your values.
+# user_config.yaml is gitignored — your keys and MCP config stay local.
+#
+# Usage: the assistant loads this file at startup. API keys here are used
+# only by the assistant/key-holder process; the HTTP API never returns keys.
+
+# --- API key (one place to add your key) ---
+# Option A: paste the key directly (do not commit user_config.yaml)
+anthropic_api_key: ""   # e.g. sk-ant-api03-...
+
+# Option B: path to a file that contains the key (one line, no quotes)
+# anthropic_api_key_path: "~/.cequence-rnd/.env"   # file with ANTHROPIC_API_KEY=...
+# Or a path to a file that contains only the key:
+# anthropic_api_key_path: "~/.cequence-rnd/anthropic_key"
+
+# --- MCP servers (add servers for tools the assistant can call) ---
+# List servers the assistant connects to on the fly. Each needs an id and either command+args (stdio) or url (HTTP).
+mcp_servers:
+  # Example: local notes server (stdio)
+  # notes:
+  #   command: "python3"
+  #   args: ["-m", "blackwall.mcp.notes_mcp_server"]
+  #   env: {}   # optional env vars
+
+  # Example: HTTP MCP server (if supported later)
+  # my-service:
+  #   url: "https://example.com/mcp"
+  #   transport: "streamable-http"
+  #   headers: {}   # optional
+
+  # Add your own:
+  # my-mcp:
+  #   command: "npx"
+  #   args: ["-y", "some-mcp-server"]
+  #   env: {}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Effects Demo</title>
+    <style>
+        /* Combined Effects CSS - Multiple effects working together */
+        
+        /* Base shader effects */
+        :root {
+            --shader-noise: 0.15;
+            --shader-grain: 0.08;
+            --shader-scanlines: True;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        /* Grain effect */
+        body {
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, var(--shader-grain)),
+                    rgba(0, 0, 0, var(--shader-grain)) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                #1a1a1a;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.03) 2px,
+                rgba(0, 0, 0, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Grain/noise effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9998;
+            opacity: var(--shader-noise);
+        }
+
+        /* Halftone effect */
+        img, video {
+            filter: contrast(1.5) brightness(0.9);
+            image-rendering: pixelated;
+        }
+
+        /* Dots effect */
+        .dots-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 8px 8px;
+            pointer-events: none;
+            z-index: 9997;
+        }
+
+        /* Matrix rain effect */
+        @keyframes matrix-rain {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.03),
+                rgba(0, 255, 0, 0.03) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            animation: matrix-rain 10s linear infinite;
+        }
+
+        /* VHS effect */
+        @keyframes vhs-scan {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(2px); opacity: 0.98; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        body {
+            animation: vhs-scan 0.1s infinite;
+        }
+
+        /* Crosshatch effect */
+        .crosshatch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px),
+                repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px);
+            pointer-events: none;
+            z-index: 9996;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #00ff88;
+            border-bottom: 2px solid #00ff88;
+            padding-bottom: 1rem;
+        }
+
+        .effect-list {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+        }
+
+        .effect-list h2 {
+            color: #00ff88;
+            margin-top: 0;
+        }
+
+        .effect-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .effect-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .effect-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="dots-overlay"></div>
+    <div class="matrix-rain"></div>
+    <div class="crosshatch"></div>
+    
+    <div class="container">
+        <h1>╔═══════════════════════════════════╗</h1>
+        <h1>║   COMBINED EFFECTS DEMO          ║</h1>
+        <h1>╚═══════════════════════════════════╝</h1>
+
+        <div class="effect-list">
+            <h2>Active Effects</h2>
+            <ul>
+                <li>✅ Scanlines (CRT horizontal bands)</li>
+                <li>✅ Grain/Noise (texture overlay)</li>
+                <li>✅ Dots (radial gradient pattern)</li>
+                <li>✅ Matrix Rain (animated green lines)</li>
+                <li>✅ Crosshatch (diagonal line pattern)</li>
+                <li>✅ VHS (scan animation)</li>
+                <li>✅ Halftone (pixelated images)</li>
+            </ul>
+        </div>
+
+        <div class="effect-list">
+            <h2>Test with Proxy</h2>
+            <p>To see combined effects on real websites:</p>
+            <pre style="background: #000; padding: 1rem; color: #00ff88;">
+ENABLE_EFFECTS=true python3 run_proxy.py
+curl http://localhost:8001/proxy/https://example.com
+            </pre>
+        </div>
+    </div>
+</body>
+</html>

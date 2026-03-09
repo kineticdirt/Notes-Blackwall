@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "description": "Worktree orchestration spec for solution evaluation",
+  "worktrees": [
+    {
+      "id": "solution-1",
+      "name": "Solution 1",
+      "path": "worktrees/solution-1"
+    },
+    {
+      "id": "solution-2",
+      "name": "Solution 2",
+      "path": "worktrees/solution-2"
+    },
+    {
+      "id": "solution-3",
+      "name": "Solution 3",
+      "path": "worktrees/solution-3"
+    }
+  ],
+  "test_harness": {
+    "path": "test_harness",
+    "runner": "run_tests.sh",
+    "timeout": 30
+  },
+  "storage": {
+    "solutions_dir": "solutions",
+    "critiques_dir": "critiques",
+    "results_dir": "results"
+  },
+  "scoring": {
+    "weights": {
+      "correctness": 0.5,
+      "performance": 0.2,
+      "code_quality": 0.2,
+      "documentation": 0.1
+    },
+    "max_score": 100
+  },
+  "report": {
+    "output": "report.html",
+    "format": "html"
+  }
+}

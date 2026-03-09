@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Canvas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Toolbar -->
+        <div id="toolbar">
+            <div class="toolbar-section">
+                <h1>🔷 Workflow Canvas</h1>
+            </div>
+            <div class="toolbar-section">
+                <button id="btn-save" class="btn btn-primary">Save</button>
+                <button id="btn-load" class="btn btn-secondary">Load</button>
+                <button id="btn-execute" class="btn btn-success">Execute</button>
+                <button id="btn-clear" class="btn btn-danger">Clear</button>
+            </div>
+            <div class="toolbar-section">
+                <input type="text" id="workflow-name" placeholder="Workflow Name" value="Untitled Workflow">
+            </div>
+        </div>
+
+        <!-- Main Container -->
+        <div id="main-container">
+            <!-- Block Palette -->
+            <div id="block-palette">
+                <h3>Blocks</h3>
+                <div id="block-categories">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Canvas Area -->
+            <div id="canvas-container">
+                <canvas id="workflow-canvas"></canvas>
+                <div id="canvas-overlay"></div>
+            </div>
+
+            <!-- Properties Panel -->
+            <div id="properties-panel">
+                <h3>Properties</h3>
+                <div id="properties-content">
+                    <p>Select a block to edit properties</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Execution Panel -->
+        <div id="execution-panel" class="hidden">
+            <div class="panel-header">
+                <h3>Execution Log</h3>
+                <button id="btn-close-execution" class="btn btn-small">×</button>
+            </div>
+            <div id="execution-log"></div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div id="chat-interface" class="chat-collapsed">
+            <div class="chat-header" id="chat-header">
+                <span class="chat-title">💬 Assistant</span>
+                <button id="chat-toggle" class="chat-toggle-btn">−</button>
+            </div>
+            <div class="chat-content" id="chat-content">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="chat-message assistant">
+                        <div class="message-content">
+                            <p>Hello! I can help you build workflows. Try commands like:</p>
+                            <ul>
+                                <li>"Add a HTTP Request node"</li>
+                                <li>"Connect node A to node B"</li>
+                                <li>"Show all blocks"</li>
+                                <li>"Clear canvas"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <div class="chat-controls">
+                        <select id="chat-agent" class="chat-select">
+                            <option value="assistant">∞ Assistant</option>
+                            <option value="workflow">Workflow</option>
+                            <option value="mcp">MCP</option>
+                        </select>
+                        <select id="chat-mode" class="chat-select">
+                            <option value="auto">Auto</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chat-input" class="chat-input" placeholder="Ask me anything about your workflow..." />
+                        <div class="chat-actions">
+                            <button class="chat-action-btn" title="Attach">@</button>
+                            <button class="chat-action-btn" title="Web">🌐</button>
+                            <button class="chat-action-btn" title="Image">🖼️</button>
+                            <button id="chat-send" class="chat-send-btn" title="Send">↑</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="blocks.js"></script>
+    <script src="canvas.js"></script>
+    <script src="workflow.js"></script>
+    <script src="streaming.js"></script>
+    <script src="node-editor.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

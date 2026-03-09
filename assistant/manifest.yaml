@@ -1,0 +1,57 @@
+# Personal Assistant Definition — single source of truth.
+# Composes multiple orchestrators; no secrets; security boundaries and consistency rules below.
+# Validate with: ./assistant/validate.sh
+
+version: "1.0"
+name: "Cequence BlackWall Assistant"
+
+consistency:
+  # Order of application for user input. Each step hands off to the next per handoff_to.
+  pipeline_order:
+    - prompt_injection_gate
+    - mcp
+    - workflow_canvas
+    - subagents
+  # Secrets must never appear in this file. Use env or vault references only.
+  secrets: "never_in_manifest"
+  # All orchestrators that modify state must log to this sink (path relative to workspace).
+  audit_sink: ".overseer/overseer.log"
+
+orchestrators:
+  prompt_injection_gate:
+    role: input_filter
+    boundary:
+      input: "user_message"
+      output: "passed_text | block_message"
+      allowed_actions: ["scan", "block", "sanitize"]
+      no_storage_of_secrets: true
+    handoff_to: ["mcp", "workflow_canvas"]
+
+  mcp:
+    role: tools
+    boundary:
+      allowed_tools: ["read_file", "write_file", "codebase_search", "grep", "run_terminal_cmd", "read_lints", "list_dir", "glob_file_search"]
+      no_secrets_in_config: true
+    handoff_to: ["workflow_canvas", "subagents"]
+
+  workflow_canvas:
+    role: workflow
+    boundary:
+      allowed_blocks: ["prompt_llm", "mcp_tool", "mcp_chain", "input_http", "output_http", "rag_search", "control_if", "control_loop"]
+      no_raw_secrets_in_workflow: true
+    handoff_to: ["subagents"]
+
+  subagents:
+    role: specialists
+    boundary:
+      allowed_agents: ["cleanup", "test", "doc"]
+      ledger_path: "agent-system/ledger/AI_GROUPCHAT.json"
+    handoff_to: []
+
+  overseer_contract:
+    role: oversight
+    boundary:
+      allowed_actions: ["append_log", "append_scratchpad"]
+      scope: ".overseer"
+      goal_from_env: "OVERSEE_GOAL"
+    handoff_to: []

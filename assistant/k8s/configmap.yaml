@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: assistant-config
+  namespace: default
+data:
+  PI_LLM_PROVIDER: "anthropic"
+  PI_LLM_MODEL: "claude-sonnet-4-5"
+  PI_HTTP_PORT: "8765"
+  PI_GATE_REMEDY: "sanitize"

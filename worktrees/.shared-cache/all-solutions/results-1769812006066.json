@@ -1,0 +1,116 @@
+[
+  {
+    "id": "pragmatist",
+    "tests": {
+      "pass": true
+    },
+    "perf": {
+      "iterations": 2000,
+      "nsTotal": 11302750,
+      "nsPerIteration": 5651.375
+    },
+    "scores": {
+      "testsScore": 100,
+      "perfScore": 64.06359296556468,
+      "peerReviewScore": 75,
+      "codeQualityScore": 75,
+      "innovationScore": 75,
+      "total": 80.31271859311293
+    }
+  },
+  {
+    "id": "user-experience",
+    "tests": {
+      "pass": true
+    },
+    "perf": {
+      "iterations": 2000,
+      "nsTotal": 13303916,
+      "nsPerIteration": 6651.958
+    },
+    "scores": {
+      "testsScore": 100,
+      "perfScore": 61.55958386587022,
+      "peerReviewScore": 75,
+      "codeQualityScore": 75,
+      "innovationScore": 75,
+      "total": 79.81191677317405
+    }
+  },
+  {
+    "id": "security-focused",
+    "tests": {
+      "pass": true
+    },
+    "perf": {
+      "iterations": 2000,
+      "nsTotal": 20204250,
+      "nsPerIteration": 10102.125
+    },
+    "scores": {
+      "testsScore": 100,
+      "perfScore": 52.92536805022521,
+      "peerReviewScore": 75,
+      "codeQualityScore": 75,
+      "innovationScore": 75,
+      "total": 78.08507361004504
+    }
+  },
+  {
+    "id": "conservative",
+    "tests": {
+      "pass": true
+    },
+    "perf": {
+      "iterations": 2000,
+      "nsTotal": 20921375,
+      "nsPerIteration": 10460.6875
+    },
+    "scores": {
+      "testsScore": 100,
+      "perfScore": 52.02804742534032,
+      "peerReviewScore": 75,
+      "codeQualityScore": 75,
+      "innovationScore": 75,
+      "total": 77.90560948506806
+    }
+  },
+  {
+    "id": "performance-focused",
+    "tests": {
+      "pass": true
+    },
+    "perf": {
+      "iterations": 2000,
+      "nsTotal": 21647167,
+      "nsPerIteration": 10823.5835
+    },
+    "scores": {
+      "testsScore": 100,
+      "perfScore": 51.119881999540844,
+      "peerReviewScore": 75,
+      "codeQualityScore": 75,
+      "innovationScore": 75,
+      "total": 77.72397639990817
+    }
+  },
+  {
+    "id": "radical",
+    "tests": {
+      "pass": true
+    },
+    "perf": {
+      "iterations": 2000,
+      "nsTotal": 47873500,
+      "nsPerIteration": 23936.75
+    },
+    "scores": {
+      "testsScore": 100,
+      "perfScore": 18.30352569345876,
+      "peerReviewScore": 75,
+      "codeQualityScore": 75,
+      "innovationScore": 75,
+      "total": 71.16070513869175
+    }
+  }
+]

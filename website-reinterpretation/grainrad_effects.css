@@ -1,0 +1,62 @@
+
+/* Shader-based graphics */
+:root {
+    --shader-noise: 0.15;
+    --shader-grain: 0.08;
+    --shader-scanlines: True;
+}
+
+body {
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, var(--shader-grain)),
+            rgba(0, 0, 0, var(--shader-grain)) 1px,
+            transparent 1px,
+            transparent 2px
+        ),
+        var(--background-color);
+    
+    position: relative;
+}
+
+/* Scanline effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Grain/noise effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9998;
+    opacity: var(--shader-noise);
+}
+
+/* Dithering effect on images */
+img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    filter: contrast(1.2) brightness(0.95);
+}

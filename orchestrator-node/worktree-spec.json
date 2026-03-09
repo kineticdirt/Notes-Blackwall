@@ -1,0 +1,63 @@
+{
+  "version": "2.0",
+  "description": "Performance-focused orchestration spec",
+  "solutions": [
+    {
+      "id": "solution-1",
+      "name": "Solution 1",
+      "path": "../worktrees/solution-1"
+    },
+    {
+      "id": "solution-2",
+      "name": "Solution 2",
+      "path": "../worktrees/solution-2"
+    },
+    {
+      "id": "solution-3",
+      "name": "Solution 3",
+      "path": "../worktrees/solution-3"
+    }
+  ],
+  "testHarness": {
+    "path": "../test_harness",
+    "runner": "run_tests.sh",
+    "timeout": 30000,
+    "tests": [
+      {
+        "testId": "default"
+      }
+    ]
+  },
+  "benchmarking": {
+    "iterations": 10,
+    "warmupIterations": 2,
+    "timeout": 60000,
+    "benchmarks": [
+      {
+        "benchmarkId": "default"
+      }
+    ]
+  },
+  "caching": {
+    "maxSize": 1000,
+    "ttl": 3600000
+  },
+  "scoring": {
+    "weights": {
+      "correctness": 0.5,
+      "performance": 0.2,
+      "code_quality": 0.2,
+      "documentation": 0.1
+    },
+    "max_score": 100
+  },
+  "maxConcurrency": 4,
+  "performance": {
+    "maxMemoryMB": 1024,
+    "maxDurationMS": 60000
+  },
+  "report": {
+    "output": "performance-report.html",
+    "format": "html"
+  }
+}

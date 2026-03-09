@@ -1,0 +1,6 @@
+# Requirements for Claude Sub-Agent System
+# No external dependencies - uses only standard library
+
+# Optional: For enhanced functionality
+# python-dateutil>=2.8.0  # Better date parsing
+# watchdog>=3.0.0  # File system monitoring

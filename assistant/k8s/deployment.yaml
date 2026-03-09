@@ -1,0 +1,51 @@
+# General-purpose assistant pod (Claude, HTTP on 8765).
+# Requires: secret assistant-llm-key with ANTHROPIC_API_KEY.
+# Apply: kubectl apply -f assistant/k8s/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assistant
+  namespace: default
+  labels:
+    app: assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: assistant
+  template:
+    metadata:
+      labels:
+        app: assistant
+    spec:
+      containers:
+        - name: assistant
+          image: assistant:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8765
+              name: http
+          envFrom:
+            - configMapRef:
+                name: assistant-config
+          env:
+            - name: PI_LLM_API_KEY_FILE
+              value: /run/secrets/anthropic_api_key
+          volumeMounts:
+            - name: llm-key
+              mountPath: /run/secrets
+              readOnly: true
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      volumes:
+        - name: llm-key
+          secret:
+            secretName: assistant-llm-key
+            items:
+              - key: ANTHROPIC_API_KEY
+                path: anthropic_api_key

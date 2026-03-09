@@ -1,0 +1,38 @@
+# Assistant as part of the system: key-holder + assistant.
+# From repo root: docker compose -f docker-compose.assistant.yaml up --build
+#
+# Secrets: set ANTHROPIC_API_KEY in .env, or mount a file and set CEQUENCE_SECRETS_FILE:
+#   env_file: [.env]
+#   volumes: ["/path/to/.cequence-rnd/.env:/run/secrets/.env"]
+#   environment: CEQUENCE_SECRETS_FILE=/run/secrets/.env
+
+services:
+  keyholder:
+    build:
+      context: .
+      dockerfile: assistant/Dockerfile
+    command: ["python3", "-m", "assistant.key_holder.server"]
+    environment:
+      - KEYHOLDER_HOST=0.0.0.0
+      - KEYHOLDER_PORT=8766
+      - CEQUENCE_SECRETS_FILE=${CEQUENCE_SECRETS_FILE:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    ports:
+      - "127.0.0.1:8766:8766"
+    restart: "no"
+
+  assistant:
+    build:
+      context: .
+      dockerfile: assistant/Dockerfile
+    command: ["python3", "-m", "assistant.pi_runner", "--daemon"]
+    environment:
+      - PI_LLM_API_BASE=http://keyholder:8766/v1
+      - PI_LLM_PROVIDER=openai
+      - PI_LLM_MODEL=${PI_LLM_MODEL:-claude-sonnet-4-5}
+      - PI_HTTP_PORT=8765
+    ports:
+      - "8765:8765"
+    depends_on:
+      - keyholder
+    restart: "no"

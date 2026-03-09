@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grainrad Theme System POC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00ff88;
+            --secondary-color: #444444;
+            --background-color: #1a1a1a;
+            --text-color: #ffffff;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Shader effects */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.03) 2px,
+                rgba(0, 0, 0, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.15;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        label {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        input[type="file"] {
+            color: var(--text-color);
+            background: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            font-family: inherit;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .split-view {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .panel {
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .panel h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        #original-image {
+            max-width: 100%;
+            height: auto;
+            image-rendering: pixelated;
+            filter: contrast(1.2) brightness(0.95);
+        }
+
+        #ascii-output {
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            line-height: 1.2;
+            white-space: pre;
+            overflow-x: auto;
+            background: #000;
+            padding: 1rem;
+            color: var(--primary-color);
+        }
+
+        #status {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        #verification {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .verified {
+            color: var(--primary-color);
+        }
+
+        .failed {
+            color: #ff4444;
+        }
+
+        @media (max-width: 768px) {
+            .split-view {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>╔═══════════════════════════════════╗</h1>
+            <h1>║   GRAINRAD THEME SYSTEM POC      ║</h1>
+            <h1>╚═══════════════════════════════════╝</h1>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <label for="image-upload">Image:</label>
+                    <input type="file" id="image-upload" accept="image/*">
+                </div>
+                
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="apply-dithering" checked> Dithering
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="apply-ascii" checked> ASCII
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="apply-shaders" checked> Shaders
+                    </label>
+                </div>
+                
+                <button id="transform-btn">Transform</button>
+            </div>
+        </header>
+
+        <div id="status" style="display: none;"></div>
+
+        <div class="split-view">
+            <div class="panel">
+                <h2>Original</h2>
+                <div id="original-content">
+                    <p>Upload an image to begin</p>
+                </div>
+                <div id="verification" style="display: none;"></div>
+            </div>
+
+            <div class="panel">
+                <h2>Transformed</h2>
+                <div id="transformed-content">
+                    <p>Transformed content will appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = window.location.origin;
+
+        const imageUpload = document.getElementById('image-upload');
+        const transformBtn = document.getElementById('transform-btn');
+        const originalContent = document.getElementById('original-content');
+        const transformedContent = document.getElementById('transformed-content');
+        const statusDiv = document.getElementById('status');
+        const verificationDiv = document.getElementById('verification');
+
+        imageUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = document.createElement('img');
+                    img.id = 'original-image';
+                    img.src = event.target.result;
+                    originalContent.innerHTML = '';
+                    originalContent.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        transformBtn.addEventListener('click', async () => {
+            const file = imageUpload.files[0];
+            if (!file) {
+                alert('Please select an image');
+                return;
+            }
+
+            transformBtn.disabled = true;
+            statusDiv.style.display = 'block';
+            statusDiv.textContent = 'Processing...';
+
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('apply_dithering', document.getElementById('apply-dithering').checked);
+                formData.append('apply_ascii', document.getElementById('apply-ascii').checked);
+                formData.append('apply_shaders', document.getElementById('apply-shaders').checked);
+
+                const response = await fetch(`${API_URL}/api/transform`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    statusDiv.textContent = '✓ Transformation complete';
+                    statusDiv.style.background = 'rgba(0, 255, 136, 0.2)';
+
+                    // Display transformed content
+                    transformedContent.innerHTML = '';
+
+                    if (result.results.dithered) {
+                        const ditheredDiv = document.createElement('div');
+                        ditheredDiv.innerHTML = `
+                            <h3>Dithered Image</h3>
+                            <img src="data:image/png;base64,${result.results.dithered.dithered_image}" 
+                                 style="max-width: 100%; image-rendering: pixelated;">
+                        `;
+                        transformedContent.appendChild(ditheredDiv);
+                    }
+
+                    if (result.results.ascii) {
+                        const asciiDiv = document.createElement('div');
+                        asciiDiv.innerHTML = `
+                            <h3>ASCII Art</h3>
+                            <pre id="ascii-output">${result.results.ascii.ascii_art}</pre>
+                        `;
+                        transformedContent.appendChild(asciiDiv);
+                    }
+
+                    if (result.results.shaders) {
+                        const shaderDiv = document.createElement('div');
+                        shaderDiv.innerHTML = `
+                            <h3>Shader Effects</h3>
+                            <p>✓ Applied (visible on page)</p>
+                        `;
+                        transformedContent.appendChild(shaderDiv);
+                    }
+
+                    // Display verification
+                    if (result.verification) {
+                        verificationDiv.style.display = 'block';
+                        const verified = result.verification.verified;
+                        verificationDiv.className = verified ? 'verified' : 'failed';
+                        verificationDiv.innerHTML = `
+                            <strong>AI Verification:</strong> ${verified ? 'PASS' : 'FAIL'}<br>
+                            <small>Provider: ${result.verification.provider || 'none'}</small><br>
+                            <small>${result.verification.reason || ''}</small>
+                        `;
+                    }
+                } else {
+                    throw new Error(result.error || 'Transformation failed');
+                }
+            } catch (error) {
+                statusDiv.textContent = `✗ Error: ${error.message}`;
+                statusDiv.style.background = 'rgba(255, 68, 68, 0.2)';
+            } finally {
+                transformBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

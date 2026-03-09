@@ -7,6 +7,8 @@ from .worktree import Worktree, WorktreeManager
 from .worktree_db import WorktreeDatabase
 from .worktree_manager import UnifiedWorktreeManager
 from .cross_chat import CrossChatBridge, CrossChatRegistry, Finding
+from .agent_coordination import AgentCoordinator, AgentHealthMonitor, AgentAction, TimeEstimate
+from .coordination_integration import CoordinatedCrossChatBridge, create_coordinated_bridge
 
 __all__ = [
     'Worktree', 
@@ -15,5 +17,11 @@ __all__ = [
     'UnifiedWorktreeManager',
     'CrossChatBridge',
     'CrossChatRegistry',
-    'Finding'
+    'Finding',
+    'AgentCoordinator',
+    'AgentHealthMonitor',
+    'AgentAction',
+    'TimeEstimate',
+    'CoordinatedCrossChatBridge',
+    'create_coordinated_bridge'
 ]

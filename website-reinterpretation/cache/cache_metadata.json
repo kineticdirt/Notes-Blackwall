@@ -1,0 +1,32 @@
+{
+  "100680ad546ce6a577f42f52df33b4cfdca756859e664b8d7de329b150d09ce9": {
+    "url": "https://example.com",
+    "expires_at": "2026-02-11T11:05:10.665734",
+    "size": 513,
+    "cached_at": "2026-02-04T11:05:10.665746"
+  },
+  "8badbcb95530e9c2f2f346ef005bd526d7d20ca2014208d030df5b4b6e7c36cc": {
+    "url": "https://httpbin.org/html",
+    "expires_at": "2026-02-11T11:05:49.212064",
+    "size": 3741,
+    "cached_at": "2026-02-04T11:05:49.212123"
+  },
+  "1868061f6e5b3766a469a034e502180e366f5d73803e56553544d5a3b031f24b": {
+    "url": "https://www.wikipedia.org",
+    "expires_at": "2026-02-11T11:05:49.359673",
+    "size": 194356,
+    "cached_at": "2026-02-04T11:05:49.359685"
+  },
+  "ce7f37f6052071bcb1a9226c9afed5ab0fb00ec6447ad55e0e0b44a80bdbdf1d": {
+    "url": "https://devdocs.io/cpp/",
+    "expires_at": "2026-02-11T11:06:05.434530",
+    "size": 6669,
+    "cached_at": "2026-02-04T11:06:05.434547"
+  },
+  "1467931a0e8c71b818773f1b3fb9d5031b980753c81c9c135c84c18f38407d5d": {
+    "url": "https://youtube.com",
+    "expires_at": "2026-02-11T11:28:45.951830",
+    "size": 677315,
+    "cached_at": "2026-02-04T11:28:45.951864"
+  }
+}
