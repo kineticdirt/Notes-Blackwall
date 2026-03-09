@@ -1,6 +1,6 @@
 # Architecture Overview — How It All Fits
 
-High-level view of how Cequence BlackWall subsystems connect: agent-system, Blackwall agents, autonomous layer, MCP, protection, prompt injection, workflow-canvas, and notifications.
+High-level view of how Notes - Blackwall subsystems connect: agent-system, Blackwall agents, autonomous layer, MCP, protection, prompt injection, workflow-canvas, and notifications.
 
 ---
 

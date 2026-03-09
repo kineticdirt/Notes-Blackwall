@@ -1,6 +1,6 @@
-# Cequence BlackWall — Compendium Index
+# Notes - Blackwall — Compendium Index
 
-Map of content for the Cequence BlackWall project. Use this as the entry point for the compendium.
+Map of content for the Notes - Blackwall project. Use this as the entry point for the compendium.
 
 **Quick reference**: [[Intent-and-Mechanism]] — one-line intent + simplified mechanism for each piece (dense, brief).
 

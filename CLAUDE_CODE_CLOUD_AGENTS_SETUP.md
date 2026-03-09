@@ -12,7 +12,7 @@ I've created a `.mcp.json` file in your project root that configures Claude Code
 
 The MCP configuration is at:
 ```
-/Users/abhinav/Desktop/Cequence BlackWall/.mcp.json
+/Users/abhinav/Desktop/Notes - Blackwall/.mcp.json
 ```
 
 ### Configuration Details

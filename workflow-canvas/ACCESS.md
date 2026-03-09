@@ -5,12 +5,12 @@
 ### Frontend (Visual Editor)
 **Open in your browser:**
 ```
-file:///Users/abhinav/Desktop/Cequence%20BlackWall/workflow-canvas/frontend/index.html
+file:///Users/abhinav/Desktop/Notes-Blackwall/workflow-canvas/frontend/index.html
 ```
 
 Or simply navigate to:
 ```
-/Users/abhinav/Desktop/Cequence BlackWall/workflow-canvas/frontend/index.html
+/Users/abhinav/Desktop/Notes - Blackwall/workflow-canvas/frontend/index.html
 ```
 and open it in your browser.
 
@@ -60,7 +60,7 @@ http://localhost:8000/redoc
 
 ### Start Server (if not running)
 ```bash
-cd "/Users/abhinav/Desktop/Cequence BlackWall/workflow-canvas/backend"
+cd "/Users/abhinav/Desktop/Notes - Blackwall/workflow-canvas/backend"
 uvicorn api:app --host 0.0.0.0 --port 8000 --reload
 ```
 
@@ -89,7 +89,7 @@ curl http://localhost:8000/api/mcp/tools
 ### Open Frontend
 Just open the `frontend/index.html` file in your browser, or use:
 ```bash
-open "/Users/abhinav/Desktop/Cequence BlackWall/workflow-canvas/frontend/index.html"
+open "/Users/abhinav/Desktop/Notes - Blackwall/workflow-canvas/frontend/index.html"
 ```
 
 ## 🎯 Recommended Workflow

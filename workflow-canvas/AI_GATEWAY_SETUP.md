@@ -11,7 +11,7 @@ The workflow canvas now includes:
 ### 1. Install Dependencies
 
 ```bash
-cd "/Users/abhinav/Desktop/Cequence BlackWall/workflow-canvas/backend"
+cd "/Users/abhinav/Desktop/Notes - Blackwall/workflow-canvas/backend"
 pip install httpx anthropic
 ```
 

@@ -44,7 +44,7 @@ git commit -m "Add worktree system with coordination"
 
 2. **Create GitHub repository:**
    - Go to https://github.com/new
-   - Repository name: `Cequence-BlackWall` (or your choice)
+   - Repository name: `Notes-Blackwall` (or your choice)
    - Description: "Worktree system for organizing AI agents with cross-chat communication"
    - **Don't** initialize with README (you already have files)
    - Click "Create repository"
@@ -52,10 +52,10 @@ git commit -m "Add worktree system with coordination"
 3. **Connect and push:**
    ```bash
    # Add remote (replace YOUR_USERNAME with your GitHub username)
-   git remote add origin https://github.com/YOUR_USERNAME/Cequence-BlackWall.git
+   git remote add origin https://github.com/YOUR_USERNAME/Notes-Blackwall.git
    
    # Or use SSH (if you have SSH keys set up)
-   git remote add origin git@github.com:YOUR_USERNAME/Cequence-BlackWall.git
+   git remote add origin git@github.com:YOUR_USERNAME/Notes-Blackwall.git
    
    # Push to GitHub
    git push -u origin main
@@ -117,7 +117,7 @@ if git remote get-url origin 2>/dev/null; then
 else
     echo ""
     echo "To add remote repository:"
-    echo "  git remote add origin https://github.com/YOUR_USERNAME/Cequence-BlackWall.git"
+    echo "  git remote add origin https://github.com/YOUR_USERNAME/Notes-Blackwall.git"
     echo "  git push -u origin main"
 fi
 
@@ -139,14 +139,14 @@ If you want **other Cursor sessions** to use the cross-chat system:
 - **No GitHub needed**: Just clone locally
   ```bash
   cd ~/other-workspace
-  git clone /Users/abhinav/Desktop/Cequence\ BlackWall ./Cequence-BlackWall
+  git clone /Users/abhinav/Desktop/Notes-Blackwall ./Notes-Blackwall
   ```
 
 ### Different Machines
 - **GitHub recommended**: Clone from remote
   ```bash
-  git clone https://github.com/YOUR_USERNAME/Cequence-BlackWall.git
-  cd Cequence-BlackWall
+  git clone https://github.com/YOUR_USERNAME/Notes-Blackwall.git
+  cd Notes-Blackwall
   pip install -r blackwall/requirements.txt
   ```
 

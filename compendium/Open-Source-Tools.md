@@ -284,4 +284,4 @@ docker-compose up -d
 
 ---
 
-*Linked from [[index]]. Part of the Cequence BlackWall compendium.*
+*Linked from [[index]]. Part of the Notes - Blackwall compendium.*

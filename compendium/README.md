@@ -1,4 +1,4 @@
-# Cequence BlackWall Compendium
+# Notes - Blackwall Compendium
 
 An **Obsidian-style** compendium of the project: linked notes, maps of content, and expanded documentation for agents, subagents, and core systems.
 

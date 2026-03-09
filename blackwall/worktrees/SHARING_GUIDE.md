@@ -9,7 +9,7 @@ The cross-chat system is **already designed** to work across different Cursor ch
 If multiple Cursor sessions are working in the **same workspace directory**, they automatically share the same database:
 
 ```
-/Users/abhinav/Desktop/Cequence BlackWall/
+/Users/abhinav/Desktop/Notes - Blackwall/
 ├── .crosschat/
 │   └── registry.db          ← Shared by all sessions in this workspace
 └── ...
@@ -58,7 +58,7 @@ If sessions are on different machines:
 ### Step 1: Check Git Status
 
 ```bash
-cd "/Users/abhinav/Desktop/Cequence BlackWall"
+cd "/Users/abhinav/Desktop/Notes - Blackwall"
 git status
 ```
 
@@ -111,7 +111,7 @@ git push -u origin master
 1. **Clone the repository:**
    ```bash
    git clone <your-repo-url>
-   cd Cequence-BlackWall
+   cd Notes-Blackwall
    ```
 
 2. **Install dependencies:**
@@ -258,7 +258,7 @@ echo "  bridge = CrossChatBridge(session_name='My Session')"
 After pushing, your repo will have:
 
 ```
-Cequence-BlackWall/
+Notes-Blackwall/
 ├── blackwall/
 │   └── worktrees/
 │       ├── cross_chat.py          # Cross-chat implementation

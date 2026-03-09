@@ -1,6 +1,6 @@
 # Neural & Related Technologies — Tangential Reference
 
-Technologies (frameworks, papers, systems) that are **tangentially related** to Cequence BlackWall: multi-agent coordination, prompt-injection defense, text/content protection, memory/context, belief-style state, and agent tooling. Not an endorsement; use for research and comparison.
+Technologies (frameworks, papers, systems) that are **tangentially related** to Notes - Blackwall: multi-agent coordination, prompt-injection defense, text/content protection, memory/context, belief-style state, and agent tooling. Not an endorsement; use for research and comparison.
 
 **Recency:** This doc focuses on **2022–2025** (last 3 years). Older foundations (e.g. AlexNet-era, early BERT/GPT-2) are omitted; the goal is **cutting-edge** and larger recent changes in LLM/agent/security/memory.
 

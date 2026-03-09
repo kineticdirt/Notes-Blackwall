@@ -1,6 +1,6 @@
 # Library — Open Source Tools & Resources
 
-This folder serves as a curated library for open source tools, configurations, and reference materials used across the Cequence BlackWall workspace.
+This folder serves as a curated library for open source tools, configurations, and reference materials used across the Notes - Blackwall workspace.
 
 ## Structure
 
@@ -40,4 +40,4 @@ library/
 
 ---
 
-*Part of the Cequence BlackWall workspace.*
+*Part of the Notes - Blackwall workspace.*

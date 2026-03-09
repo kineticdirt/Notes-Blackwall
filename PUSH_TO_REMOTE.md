@@ -5,7 +5,7 @@
 ### Step 1: Initialize Git Repository
 
 ```bash
-cd "/Users/abhinav/Desktop/Cequence BlackWall"
+cd "/Users/abhinav/Desktop/Notes - Blackwall"
 
 # Initialize git repository
 git init
@@ -21,7 +21,7 @@ git commit -m "Initial commit: Worktree system with cross-chat communication"
 
 **Option A: GitHub**
 1. Go to https://github.com/new
-2. Create a new repository (e.g., `Cequence-BlackWall`)
+2. Create a new repository (e.g., `Notes-Blackwall`)
 3. **Don't** initialize with README (we already have files)
 
 **Option B: GitLab**
@@ -35,9 +35,9 @@ git commit -m "Initial commit: Worktree system with cross-chat communication"
 
 ```bash
 # Add remote (replace with your repo URL)
-git remote add origin https://github.com/yourusername/Cequence-BlackWall.git
+git remote add origin https://github.com/yourusername/Notes-Blackwall.git
 # or
-git remote add origin git@github.com:yourusername/Cequence-BlackWall.git
+git remote add origin git@github.com:yourusername/Notes-Blackwall.git
 
 # Rename branch to main (if needed)
 git branch -M main
@@ -75,7 +75,7 @@ git log --oneline
 If another Cursor chat opens in the **same workspace directory**, it automatically shares the database:
 
 ```
-/Users/abhinav/Desktop/Cequence BlackWall/
+/Users/abhinav/Desktop/Notes - Blackwall/
 ├── .crosschat/
 │   └── registry.db          ← Automatically shared!
 └── ...
@@ -94,8 +94,8 @@ findings = bridge.discover()  # Finds findings from Chat 1
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/Cequence-BlackWall.git
-   cd Cequence-BlackWall
+   git clone https://github.com/yourusername/Notes-Blackwall.git
+   cd Notes-Blackwall
    ```
 
 2. **Install dependencies:**
@@ -149,7 +149,7 @@ bridge.registry = registry  # Use shared registry
 ### Developer A (Original Workspace)
 
 ```bash
-cd "/Users/abhinav/Desktop/Cequence BlackWall"
+cd "/Users/abhinav/Desktop/Notes - Blackwall"
 
 # Publish finding
 python -m blackwall.worktrees.cross_chat_cli publish \
@@ -160,7 +160,7 @@ python -m blackwall.worktrees.cross_chat_cli publish \
 ### Developer B (Cloned Repository)
 
 ```bash
-cd ~/cloned/Cequence-BlackWall
+cd ~/cloned/Notes-Blackwall
 
 # Discover findings
 python -m blackwall.worktrees.cross_chat_cli discover --category bug
@@ -175,7 +175,7 @@ python -m blackwall.worktrees.cross_chat_cli publish \
 ### Developer C (Same Workspace as A)
 
 ```bash
-cd "/Users/abhinav/Desktop/Cequence BlackWall"
+cd "/Users/abhinav/Desktop/Notes - Blackwall"
 
 # Automatically sees findings from both A and B
 python -m blackwall.worktrees.cross_chat_cli discover
@@ -186,7 +186,7 @@ python -m blackwall.worktrees.cross_chat_cli discover
 After pushing, your repo will have:
 
 ```
-Cequence-BlackWall/
+Notes-Blackwall/
 ├── blackwall/
 │   └── worktrees/
 │       ├── cross_chat.py          # Cross-chat system

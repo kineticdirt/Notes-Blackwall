@@ -217,7 +217,7 @@ The proxy uses proper User-Agent headers:
 
 **Bot Mode** (for robots.txt compliance):
 ```
-WebsiteProxy/1.0 (https://github.com/abhinavallam/cequence-blackwall; abhinav@example.org) aiohttp/3.9.0
+WebsiteProxy/1.0 (https://github.com/abhinavallam/notes-blackwall; abhinav@example.org) aiohttp/3.9.0
 ```
 
 **Browser Mode** (for humanistic access):

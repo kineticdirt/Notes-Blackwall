@@ -1,6 +1,6 @@
 # Running the assistant as part of the system
 
-The assistant (Pi-style runner) is a first-class component of Cequence BlackWall. Run it together with the optional key-holder so the stack is up with one command.
+The assistant (Pi-style runner) is a first-class component of Notes - Blackwall. Run it together with the optional key-holder so the stack is up with one command.
 
 ---
 

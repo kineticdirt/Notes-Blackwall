@@ -17,7 +17,7 @@ This guide gets each project folder into its **own GitHub repo**. You must log i
 
 ## Run the script
 
-From the workspace root (e.g. `"Cequence BlackWall"`):
+From the workspace root (e.g. `"Notes - Blackwall"`):
 
 ```bash
 export GITHUB_USER=yourusername
@@ -46,7 +46,7 @@ Create each repo (private or public), then run the printed push commands. Repos 
 
 The script pushes **all local content** as many small repos:
 
-- **Root:** `cequence-blackwall-root` (all root-level .md, run_*.py, test_*.py, docker-compose, worktree_manager, worktree-spec.json)
+- **Root:** `notes-blackwall-root` (all root-level .md, run_*.py, test_*.py, docker-compose, worktree_manager, worktree-spec.json)
 - **Folders:** agent-system, assistant, blackwall, cloud_agents_notifications, compendium, docs, grainrad-poc, hooks, library, ledger, nightshade-tracker, orchestrator-node, overseer, scripts, toolbox_test, website-reinterpretation, workflow-canvas, worktree-orchestration, worktree-orchestration-v2, worktrees
 
 Edit `PROJECTS` in `scripts/push-projects-to-github.sh` to add or remove folders.

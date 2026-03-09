@@ -64,7 +64,7 @@ VISIBILITY="--private"
 [ "$PRIVATE" = "0" ] && VISIBILITY="--public"
 
 ROOT_GITIGNORE="$ROOT/.gitignore"
-TMP_BASE="${TMPDIR:-/tmp}/cequence-push-$$"
+TMP_BASE="${TMPDIR:-/tmp}/notes-blackwall-push-$$"
 mkdir -p "$TMP_BASE"
 [ -n "$USE_GH" ] && trap 'rm -rf "$TMP_BASE"' EXIT
 
@@ -72,7 +72,7 @@ echo "GITHUB_USER=$GITHUB_USER  USE_GH=$USE_GH  $VISIBILITY"
 echo ""
 
 # Root-level content repo (optional: docs, scripts, test files at workspace root)
-ROOT_REPO_NAME="cequence-blackwall-root"
+ROOT_REPO_NAME="notes-blackwall-root"
 echo "--- $ROOT_REPO_NAME ---"
 tmp_root="$TMP_BASE/$ROOT_REPO_NAME"
 rm -rf "$tmp_root"

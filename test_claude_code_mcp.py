@@ -17,7 +17,7 @@ def test_claude_code_config():
     
     # Test 1: Check project-level config
     print("\n[1/3] Checking project-level .mcp.json...")
-    project_config = Path("/Users/abhinav/Desktop/Cequence BlackWall/.mcp.json")
+    project_config = Path("/Users/abhinav/Desktop/Notes - Blackwall/.mcp.json")
     
     if project_config.exists():
         try:

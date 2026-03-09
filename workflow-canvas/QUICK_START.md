@@ -4,13 +4,13 @@
 
 ### Option 1: Direct File Access
 ```bash
-cd "/Users/abhinav/Desktop/Cequence BlackWall/workflow-canvas"
+cd "/Users/abhinav/Desktop/Notes - Blackwall/workflow-canvas"
 open frontend/index.html
 ```
 
 ### Option 2: Browser URL
 ```
-file:///Users/abhinav/Desktop/Cequence%20BlackWall/workflow-canvas/frontend/index.html
+file:///Users/abhinav/Desktop/Notes-Blackwall/workflow-canvas/frontend/index.html
 ```
 
 ## ✅ Prerequisites

@@ -3,7 +3,7 @@
 # Validate with: ./assistant/validate.sh
 
 version: "1.0"
-name: "Cequence BlackWall Assistant"
+name: "Notes - Blackwall Assistant"
 
 consistency:
   # Order of application for user input. Each step hands off to the next per handoff_to.

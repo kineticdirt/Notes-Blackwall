@@ -44,7 +44,7 @@ except ImportError:
 # User-Agent following Wikimedia Foundation User-Agent Policy
 # Format: <client name>/<version> (<contact information>) <library/framework name>/<version>
 # For bot-like behavior (robots.txt compliance)
-BOT_USER_AGENT = "WebsiteProxy/1.0 (https://github.com/abhinavallam/cequence-blackwall; abhinav@example.org) aiohttp/3.9.0"
+BOT_USER_AGENT = "WebsiteProxy/1.0 (https://github.com/abhinavallam/notes-blackwall; abhinav@example.org) aiohttp/3.9.0"
 
 # Real browser User-Agent for humanistic access
 BROWSER_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"

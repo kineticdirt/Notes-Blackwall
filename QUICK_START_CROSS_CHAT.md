@@ -34,7 +34,7 @@ findings = bridge2.discover()  # Automatically finds Chat 1's finding!
 2. **Other user clones:**
    ```bash
    git clone <your-repo-url>
-   cd Cequence-BlackWall
+   cd Notes-Blackwall
    pip install -r blackwall/requirements.txt
    ```
 

@@ -44,8 +44,8 @@ printf "protocol=https\nhost=%s\nusername=%s\npassword=%s\n" "$GITHUB_HOST" "$GI
   | git credential approve
 
 # Use plain HTTPS URL (no user@ in URL — that can cause "Bad hostname")
-# Default: Cequence-BlackWall (monorepo). For a standalone repo set REPO_NAME e.g. REPO_NAME=DaDumpMan
-REPO_NAME="${REPO_NAME:-Cequence-BlackWall}"
+# Default: Notes-Blackwall (monorepo). For a standalone repo set REPO_NAME e.g. REPO_NAME=DaDumpMan
+REPO_NAME="${REPO_NAME:-Notes-Blackwall}"
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   git remote set-url origin "https://${GITHUB_HOST}/${GITHUB_USER}/${REPO_NAME}.git" 2>/dev/null || true
   git config credential.https://github.com.username "$GITHUB_USER"
