@@ -73,3 +73,10 @@ assistant/config/secrets.env
 assistant/llm_keys/ANTHROPIC_API_KEY
 assistant/llm_keys/OPENAI_API_KEY
 assistant/llm_keys/*_API_KEY
+
+# Retrieval eval API key (paste in retrieval-eval/.api-key)
+retrieval-eval/.api-key
+retrieval-eval/secrets.env
+
+# Local MCP config (often contains bearer tokens; use .mcp.json.example as template)
+.mcp.json

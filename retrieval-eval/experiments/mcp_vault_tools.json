@@ -1,0 +1,34 @@
+{
+  "server": "agent-context-vault",
+  "description": "Single-server tool registry: nano is trained on this server's tools only.",
+  "tools": [
+    {
+      "name": "vault_list_sources",
+      "description": "List vetted vault sources (id, title, trust_tier, tags). Use before grounded answers about methodology, intent, or cited facts.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "vault_read_source",
+      "description": "Read one source by id from manifest. Quote only from this output for strict grounding.",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "source_id": { "type": "string" } },
+        "required": ["source_id"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "vault_reload_manifest",
+      "description": "Reload manifest.json after adding sources.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  ]
+}

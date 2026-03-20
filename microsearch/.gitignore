@@ -1,0 +1,12 @@
+# Generated artifacts
+generated/
+training/*.jsonl
+training/*.json
+results/*.jsonl
+results/*.json
+
+# Local API specs (uncomment if you don't want to commit any spec files)
+# specs/*.openapi.json
+# specs/*.openapi.yaml
+
+# Keep directory structure

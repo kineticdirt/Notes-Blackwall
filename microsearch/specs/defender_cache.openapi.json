@@ -1,0 +1,31 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Defender mitigator cache API", "version": "1.0", "description": "Derived from def-cterm.txt transcript. Base URL: http://localhost:9999" },
+  "servers": [{ "url": "http://localhost:9999" }],
+  "paths": {
+    "/__cq/cache/info": {
+      "get": {
+        "operationId": "cacheInfo",
+        "summary": "Get mitigator cache summary (ip-map, policy-map, fp-map counts, etc.)"
+      }
+    },
+    "/__cq/cache/ip-map": {
+      "get": {
+        "operationId": "cacheIpMap",
+        "summary": "Get mitigator cache IPv4/IPv6 map and policies per IP"
+      }
+    },
+    "/__cq/cache/policy-map": {
+      "get": {
+        "operationId": "cachePolicyMap",
+        "summary": "Get mitigator cache policy map (policies, correlation-ids, match-criteria)"
+      }
+    },
+    "/__cq/cache/all": {
+      "get": {
+        "operationId": "cacheAll",
+        "summary": "Get full mitigator cache dump (all cache data)"
+      }
+    }
+  }
+}

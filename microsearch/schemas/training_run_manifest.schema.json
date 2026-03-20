@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cequence.local/microsearch/training_run_manifest.schema.json",
+  "title": "MicroSearch training run record",
+  "description": "One JSON object per training or dataset-build session; append to training_runs.jsonl.",
+  "type": "object",
+  "required": ["run_id", "recorded_at", "training_duration_seconds"],
+  "properties": {
+    "run_id": { "type": "string", "format": "uuid" },
+    "recorded_at": { "type": "string", "format": "date-time" },
+    "training_duration_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Wall-clock training or end-to-end fine-tune duration."
+    },
+    "training_data_generation_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Optional: time spent only generating JSONL via frontier model."
+    },
+    "openapi_spec_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "openapi_sha256": { "type": "string" },
+    "num_openapi_operations": { "type": "integer", "minimum": 0 },
+    "num_training_examples": { "type": "integer", "minimum": 0 },
+    "tools_catalog_path": { "type": "string" },
+    "training_dataset_path": { "type": "string" },
+    "training_backend": {
+      "type": "string",
+      "description": "e.g. jsonl_only, hf_jobs, local_ollama_finetune"
+    },
+    "frontier_model_training_data": { "type": "string" },
+    "micro_model": { "type": "string", "description": "e.g. SmolLM3-3B, qwen2.5-4b-instruct" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

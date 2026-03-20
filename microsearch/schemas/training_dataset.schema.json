@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cequence.local/microsearch/training_dataset.schema.json",
+  "title": "MicroSearch API routing training row",
+  "description": "One line per JSONL row: supervised intent -> tool + arguments for micro model training or eval.",
+  "type": "object",
+  "required": ["intent", "expected_tool"],
+  "properties": {
+    "intent": {
+      "type": "string",
+      "description": "Natural language user request in the style of production traffic."
+    },
+    "expected_tool": {
+      "type": "string",
+      "description": "MCP tool name exactly as in tools/list."
+    },
+    "expected_arguments": {
+      "type": "object",
+      "description": "JSON object of arguments; use placeholders for secrets, e.g. {\"apiKey\": \"<REDACTED>\"}."
+    },
+    "negative_intent": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, model should refuse or return no tool (guardrail example)."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. [\"list\", \"pagination\", \"search\"]"
+    },
+    "source_operation": {
+      "type": "string",
+      "description": "OpenAPI operation reference, e.g. GET /api/posts"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

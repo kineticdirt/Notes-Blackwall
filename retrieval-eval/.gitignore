@@ -1,0 +1,11 @@
+# API key — paste your key in .api-key (one line, no quotes). Never commit.
+.api-key
+*.key
+secrets.env
+.env
+.env.*
+
+# Results and cache
+results/
+*.jsonl
+__pycache__/

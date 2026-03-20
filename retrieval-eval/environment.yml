@@ -1,0 +1,13 @@
+# Conda env for retrieval-eval data science (JSONL → DataFrame, plots, exports).
+# Create: conda env create -f environment.yml
+# Activate: conda activate retrieval-eval-ds
+name: retrieval-eval-ds
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas>=2.2
+  - matplotlib>=3.8
+  - seaborn>=0.13
+  - pyarrow>=14.0
+  - jupyterlab>=4.0

@@ -1,0 +1,6 @@
+# Optional: pip install -r requirements-analysis.txt (venv) if not using Conda.
+# Prefer: conda env create -f environment.yml
+pandas>=2.2
+matplotlib>=3.8
+seaborn>=0.13
+pyarrow>=14

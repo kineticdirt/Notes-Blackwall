@@ -1,0 +1,7 @@
+# Optional: for nano path with SmolLM3-3B / Qwen4B (intent → tool)
+# Install after retrieval-eval base deps. Requires ~6GB+ RAM / GPU for 3B–4B.
+transformers>=4.36.0
+torch>=2.0.0
+accelerate>=0.25.0
+peft>=0.7.0
+datasets>=2.14.0
